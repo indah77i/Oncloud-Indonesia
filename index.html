@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Official Order - On Cloud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            height: 100vh;
+            height: -webkit-fill-available;
+            overflow: hidden;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
+        input, select, textarea {
+            font-size: 14px !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col">
+
+    <!-- Promo Marquee (Teks Berjalan) -->
+    <div class="overflow-hidden bg-black text-white py-1">
+        <div class="animate-marquee text-[10px] font-bold tracking-widest uppercase">
+            JANGAN RAGU ORDER DI ON CLOUD INDONESIA • 100% ORIGINAL SWISS TECHNOLOGY • JAMINAN BARU • GARANSI UANG KEMBALI
+        </div>
+    </div>
+
+    <div class="flex-1 flex flex-col px-4 py-2 justify-center max-w-md mx-auto w-full">
+        <!-- Minimalist Header -->
+        <div class="text-center mb-3">
+            <h1 class="text-xl font-extrabold tracking-tighter text-gray-900 leading-none">ON CLOUD INDONESIA</h1>
+            <div class="flex justify-center gap-2 mt-1">
+                <span class="text-[9px] font-bold text-green-600 uppercase">✓ Verified Seller</span>
+                <span class="text-[9px] font-bold text-blue-600 uppercase">✓ Authentic Product</span>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 space-y-3">
+            <form id="orderForm" class="space-y-3">
+                <!-- Nama -->
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight ml-1">Nama Penerima</label>
+                    <input type="text" id="nama" placeholder="Nama Lengkap" required
+                        class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-black transition-all">
+                </div>
+
+                <!-- No HP -->
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight ml-1">WhatsApp Pembeli</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-gray-400 text-sm">+62</span>
+                        <input type="tel" id="whatsapp" placeholder="8xxx" required
+                            class="w-full p-2.5 pl-11 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-black transition-all">
+                    </div>
+                </div>
+
+                <!-- Alamat -->
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight ml-1">Alamat & Kodepos</label>
+                    <textarea id="alamat" rows="2" placeholder="Nama Jalan, Kota, Kode Pos" required
+                        class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-black resize-none transition-all"></textarea>
+                </div>
+
+                <!-- Produk Info -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight ml-1">Size (EUR)</label>
+                        <select id="ukuran" required class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none cursor-pointer">
+                            <option value="" disabled selected>Pilih</option>
+                            <script>
+                                for(let i=37; i<=48; i++) document.write(`<option value="${i}">${i}</option>`);
+                            </script>
+                        </select>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight ml-1">Kuantitas</label>
+                        <select id="jumlah" required class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none cursor-pointer">
+                            <script>
+                                for(let i=1; i<=11; i++) document.write(`<option value="${i}">${i} Pasang</option>`);
+                            </script>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Pembayaran -->
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight ml-1">Metode Pembayaran</label>
+                    <select id="pembayaran" required class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl outline-none font-medium cursor-pointer">
+                        <option value="BCA">Bank BCA</option>
+                        <option value="Mandiri">Bank Mandiri</option>
+                        <option value="BRI">Bank BRI</option>
+                        <option value="DANA / E-Wallet">DANA / OVO / GOPAY</option>
+                    </select>
+                </div>
+
+                <!-- Action Button -->
+                <button type="button" onclick="kirimOrder()" 
+                    class="w-full bg-black text-white font-bold py-3.5 rounded-xl shadow-lg active:scale-95 transition-all text-sm tracking-widest uppercase mt-2 flex items-center justify-center gap-2">
+                    KONFIRMASI PESANAN
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer Ringkas -->
+        <p class="text-center text-[9px] text-gray-400 mt-4 leading-tight uppercase tracking-tighter">
+            © 2025 ON CLOUD INDONESIA OFFICIAL<br>
+            <span class="font-bold text-gray-500">Authorized Distribution Center</span>
+        </p>
+    </div>
+
+    <script>
+        function kirimOrder() {
+            const nama = document.getElementById('nama').value;
+            const alamat = document.getElementById('alamat').value;
+            const wa = document.getElementById('whatsapp').value;
+            const ukuran = document.getElementById('ukuran').value;
+            const jumlah = document.getElementById('jumlah').value;
+            const pembayaran = document.getElementById('pembayaran').value;
+
+            if(!nama || !alamat || !wa || !ukuran) {
+                alert("Harap lengkapi formulir sebelum melakukan konfirmasi.");
+                return;
+            }
+
+            const formattedWA = wa.startsWith('0') ? wa.substring(1) : wa;
+            const text = `*ORDER FORM - ON CLOUD INDONESIA*\n` +
+                         `━━━━━━━━━━━━━━━━━━━━\n` +
+                         `👤 *Nama:* ${nama}\n` +
+                         `📱 *WA:* +62${formattedWA}\n` +
+                         `📦 *Produk:* On Cloud Original\n` +
+                         `👟 *Size:* EUR ${ukuran}\n` +
+                         `🔢 *Qty:* ${jumlah} Pasang\n` +
+                         `📍 *Alamat:* ${alamat}\n` +
+                         `💳 *Bayar:* ${pembayaran}\n` +
+                         `━━━━━━━━━━━━━━━━━━━━\n` +
+                         `*JAMINAN:* 100% BARU & ORIGINAL.`;
+
+            // Nomor tujuan yang diperbarui
+            const adminNumber = "082299196390".replace(/^0/, "62");
+            window.location.href = `https://wa.me/${adminNumber}?text=${encodeURIComponent(text)}`;
+        }
+    </script>
+</body>
+</html>
+
